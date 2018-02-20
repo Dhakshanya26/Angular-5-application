@@ -1,0 +1,11 @@
+ 
+
+<div [title]="rating" style="overflow: hidden;" [style.width.px]="!showAllStars? width:''">
+  <div style="width: 86px;">
+    <span class="glyphicon glyphicon-star"  (click)="showAllStars? onClick(1): ''" [ngStyle]="selectedRating > 0 ?  {'color': '#d4d427'}: ''  "  ></span>
+    <span class="glyphicon glyphicon-star"  (click)="showAllStars? onClick(2): ''"  [ngStyle]="selectedRating > 1 ?  {'color': '#d4d427'}: '' " ></span>
+    <span class="glyphicon glyphicon-star"  (click)="showAllStars? onClick(3): ''" [ngStyle]="selectedRating >2 ?  {'color': '#d4d427'}: ''"></span>
+    <span class="glyphicon glyphicon-star"  (click)="showAllStars? onClick(4): ''"  [ngStyle]=" selectedRating > 3 ?  {'color': '#d4d427'}: ''"></span>
+    <span class="glyphicon glyphicon-star"  (click)="showAllStars? onClick(5): ''"  [ngStyle]="selectedRating > 4 ?  {'color': '#d4d427'}: '' " ></span>
+  </div>
+</div>

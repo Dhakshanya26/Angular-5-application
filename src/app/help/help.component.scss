@@ -1,0 +1,25 @@
+.help-wrapper {
+    background: white;
+    min-height: 500px;
+    color: black;
+    padding: 15px;
+    p.information {
+        font-size: 18px;
+    }
+    i,
+    cite,
+    em,
+    var,
+    address,
+    dfn,
+    .italic {
+        font-style: italic;
+    }
+    a:hover {
+        font-weight: bold;
+    }
+    a {
+        text-decoration: underline;
+        color: black;
+    }
+}

@@ -1,0 +1,17 @@
+<div class="wrapper">
+
+
+<div *ngIf='product'>
+  Product Detail works! {{product.ProductName}}
+ 
+</div>
+<br/>
+<div *ngIf='product'>
+   {{product.Sku}}
+</div>
+
+
+<div>
+  <a class="btn btn-primary" (click)="onBack()" >Back</a>
+</div>
+</div>

@@ -1,0 +1,72 @@
+<div id="wrapper" [class]="isClosed ? '': 'toggled'">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <button mat-icon-button (click)="iconToggle()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </li>
+          
+            <li class="item">
+                <a mat-list-item>Admin
+                    <i class="material-icons back-arrow">keyboard_arrow_down</i>
+                </a>
+                <ul class="submenu">
+                        <li class="item">
+                                <a mat-list-item routerLink="/users" (click)="iconToggle()">
+                                    <span>Users
+                                           <i class="material-icons arrows">keyboard_arrow_right</i>
+                                    </span>
+                                </a>
+                            </li>                        
+                </ul>               
+            </li>
+            <li class="item">
+                <a mat-list-item>More Options
+                    <i class="material-icons back-arrow">keyboard_arrow_down</i>
+                </a>
+
+                <ul class="submenu">                       
+                        <li class="item">
+                                <a mat-list-item routerLink="/product" (click)="iconToggle()">
+                                    <span>Products
+                                           <i class="material-icons arrows">keyboard_arrow_right</i>
+                                    </span>
+                                </a>
+                            </li>
+                </ul>               
+            </li>
+            
+            <li  class="item">
+                <a mat-list-item routerLink="/help" (click)="iconToggle()">Help
+                    <i class="material-icons arrows">keyboard_arrow_right</i>
+                </a>
+            </li>
+            <li class="item visible-xs" (click)="logout()" *ngIf="hasLoggedIn" >
+                <a mat-list-item>Log Out
+                    <i class="material-icons back-arrow">keyboard_arrow_right</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="page-title">
+                <button mat-icon-button *ngIf="isClosed" (click)="iconToggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>             
+            </div>
+            <div (click)="iconClose()" class="main-wrapper" >
+                <app-alert></app-alert>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->

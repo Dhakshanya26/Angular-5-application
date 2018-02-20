@@ -1,0 +1,78 @@
+<div id="productList" class="row">
+  <div>
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="heading" [ngStyle]="{'margin-left': '15px'}">
+      {{title}}
+      <p *ngIf="products && products.length> 0" [ngStyle]="{'padding-left': '15px'}">
+        {{ products.length }} items available
+      </p>
+    </div>
+    <div [ngStyle]="{'padding': '15px 0px','margin-left': '15px'}">
+      <div class="row">
+        <div class="col-lg-4 col-xs-4">
+            <button type="button" [ngStyle]="{'float': 'left'}" class="btn btn-default text-right" mat-raised-button (click)="addNewProduct()">Add New</button>
+           </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-12">
+
+      <div class="table-responsive">
+        <div class="example-container mat-elevation-z8">
+          <div *ngIf="!isLoading &&  filteredProducts.data != null && filteredProducts.data.length > 0">
+            <mat-table #table [dataSource]="filteredProducts" matSort (matSortChange)="sortData($event)" matSortActive="productName"  matSortDirection="asc" matSortDisableClear>
+              <!-- Position Column -->
+              <ng-container matColumnDef="productName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="sku">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="sku"> Sku </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>
+              </ng-container>
+              <!-- Weight Column -->
+              <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="price"> Price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> £ {{element.price}} </mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="releaseDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="releaseDate" class="hidden-sm hidden-xs"> Release Date </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="hidden-sm hidden-xs"> {{element.releaseDate | date:'MM/dd/yyyy'}} </mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="rating">
+                <mat-header-cell *matHeaderCellDef mat-sort-header="rating" class="hidden-sm hidden-xs"> Rating </mat-header-cell>
+                <mat-cell *matCellDef="let element" matTooltip="Star Rating  {{ element.rating}}" [matTooltipPosition]="toolTipPosition" class="hidden-sm hidden-xs">
+                  <star-rating [rating]='element.rating' (ratingClicked)="onRatingClick($event)"></star-rating>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef  >Action</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="action-buttons">
+                  <a (click)="selectedRow(element)" href="javascript:void(0)">
+                    <i class="material-icons arrows">edit</i>
+                  </a>
+                  <a (click)="deleteSelected(element)" href="javascript:void(0)">
+                    <i class="material-icons arrows">delete</i>
+                  </a>
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.productId}"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]=products.length [pageIndex]="pageIndex" [pageSize]="pageSize" 
+            (page)="pageEvent = getPagedProductData($event)"
+             class="pagination"></mat-paginator>
+          </div>
+          <div *ngIf="!isLoading && (filteredProducts.data == null ||  filteredProducts.data.length <= 0)" [ngClass]="{'no-records' : true}">
+            No records found.
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

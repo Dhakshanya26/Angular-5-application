@@ -1,0 +1,17 @@
+<mat-card *ngIf="data">
+
+  <div class="wrapper">
+
+    <ng-content select=".name"></ng-content>
+
+    <h6 class="card-title" [hidden]="data.hide">
+      <ng-content select=".description"></ng-content>
+    </h6>
+
+
+    <a mat-raised-button color="primary" style="float:left" (click)="data.toggle()">Tell Me
+    </a>
+    <br/>
+    <br/>
+  </div>
+</mat-card>

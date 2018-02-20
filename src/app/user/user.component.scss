@@ -1,0 +1,71 @@
+.userCollection {
+    background: white;
+    .heading {
+        color: black;
+        font-size: 25px;
+        border-bottom: 1px solid #e0e0e0;
+        margin: 30px 0;
+    }
+    .highlight {
+        background: #c7c6c6;
+    }
+    .no-records {
+        margin: 30px 0;
+        color: red;
+        font-size: 18px;
+        font-family: serif;
+    }
+    .input-group {
+        width: 50%;
+        .mat-form-field {
+            width: 100%;
+        }
+    }
+    .mat-cell{
+        @media(max-width: 768px)
+        {
+        font-size: 10px;
+        }
+    }
+    .mat-header-row, .mat-row {
+        @media(max-width: 768px)
+        {   
+        padding: 0 10px; }
+    }
+    .mat-cell:nth-child(1),
+    .mat-header-cell:nth-child(1),
+    {
+        flex: 0 0 10%;
+    }
+    .mat-cell:nth-child(5),
+    .mat-header-cell:nth-child(5),
+    {
+        flex: 0 0 5%;
+    }
+}
+
+.loading-div {
+    left: 50%;
+    margin-left: -4em;
+    /* display: block; */
+    position: absolute;
+    top: 50%;
+    margin-top: -4.05em;
+}
+
+.user-dialog {
+    .mat-dialog-content {
+        height: 65%;
+    }
+    .mat-form-field {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.guest-user {
+    color: white;
+    button {
+        margin: 50px;
+    }
+}

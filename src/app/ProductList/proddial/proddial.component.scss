@@ -1,0 +1,32 @@
+
+.product-dialog {
+    .page-heading{
+        background: #6fa6a9;
+        padding: 5px 10px;
+        text-align: center; 
+        h2{
+            margin: 0;
+            font-family: cursive;
+        }
+    }
+    .mat-dialog-content {
+        height: 65%;
+    }
+    .mat-form-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mat-dialog-content {
+        max-height: 100% !important;
+    }
+    
+.loading-div {
+    left: 50%;
+    margin-left: -4em;
+    /* display: block; */
+    position: absolute;
+    top: 50%;
+    margin-top: -4.05em;
+}
+}

@@ -1,0 +1,46 @@
+<div class="product-dialog">
+  <form novalidate [formGroup]="updateForm" (ngSubmit)="SubmitForm()" *ngIf="updateForm">
+    <mat-dialog-content>
+      <div class="page-heading">
+          <h2 mat-dialog-title>{{productId.value > 0 ? 'Update Product': 'Create Product'}} </h2>
+      </div>
+     
+      <div>
+           
+        <mat-error *ngIf="customerror">{{customerror}}</mat-error>
+        <input [ngStyle]="{'visibility':'hidden'}"  formControlName="productId">
+        <mat-form-field>
+          <input matInput placeholder="Product name" formControlName="productName">
+          <mat-error *ngIf="productName.invalid">{{getProductNameErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Sku" formControlName="sku">
+          <mat-error *ngIf="sku.invalid">{{getSkuErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput="number" placeholder="Price" formControlName="price">
+          <span matPrefix>£&nbsp;</span>
+          <span matSuffix>.00</span>
+          <mat-error *ngIf="price.invalid">{{getPriceErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput="date" [matDatepicker]="dp1" placeholder="Release Date"  disabled formControlName="releaseDate">
+          <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+          <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+          <mat-error *ngIf="releaseDate.invalid">{{getReleaseDateErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput="number"  placeholder="Rating" formControlName="rating" #txtRating [ngStyle]="{'visibility':'hidden'}"  >
+          <star-rating [rating]="rating.value" [showAllStars]="true" (ratingClicked)="onRatingClick($event)"></star-rating>
+          <mat-error *ngIf="rating.invalid">{{getRatingErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-progress-spinner *ngIf="isLoading" class="loading-div" color="accent" mode="indeterminate" value="loading">
+        </mat-progress-spinner>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button [disabled]="isLoading" color="accent" (ngSubmit)="SubmitForm()">Save</button>
+    </mat-dialog-actions>
+  </form>
+</div>

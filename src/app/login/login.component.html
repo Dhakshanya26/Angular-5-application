@@ -1,0 +1,80 @@
+<div class="container login-wrapper">
+  <div class="row">
+
+
+    <div [ngClass]="'center-container'">
+
+      <mat-card>
+        <h2>
+          Login
+        </h2>
+        <div class="my-form-field">
+          <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="isLoginForm">
+            <mat-error *ngIf="customerror">{{customerror}}</mat-error>
+            <mat-form-field>
+              <input matInput="email" placeholder="Enter email address" formControlName="email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <div class="login-form-buttons">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <button mat-raised-button [disabled]="isLoading || !loginForm.valid " color="accent" type="submit" style="width: 200px;">Login</button>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <a href="javascript:void(0)" (click)="openRegisterForm()"  class="align-right">Register</a>
+                </div>
+              </div>
+
+            </div>
+
+            <mat-progress-spinner *ngIf="isLoading" class="loading-div" color="accent" mode="indeterminate" value="loading">
+
+            </mat-progress-spinner>
+
+            <!-- <pre>{{myform.value | json}}</pre> -->
+          </form>
+
+          <form novalidate [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()" *ngIf="!isLoginForm">
+            <mat-error *ngIf="customerror">{{customerror}}</mat-error>
+            <mat-form-field>
+              <input matInput placeholder="Enter your Firstname" formControlName="firstname">
+              <mat-error *ngIf="firstname.invalid">{{getFirstNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Enter your Lastname" formControlName="lastname">
+              <mat-error *ngIf="lastname.invalid">{{getLastNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput="email" placeholder="Enter email address" formControlName="registeremail">
+              <mat-error *ngIf="registeremail.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="registerpassword">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="registerpassword.invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <div class="login-form-buttons">
+              <button mat-raised-button [disabled]="isLoading || !registerForm.valid" color="accent" type="submit" style="width: 200px;">Register</button>
+              <a href="javascript:void(0)" (click)="openLoginForm()" class="align-right">Back to Login</a>
+            </div>
+
+            <mat-progress-spinner *ngIf="isLoading" class="loading-div" color="accent" mode="indeterminate" value="loading">
+
+            </mat-progress-spinner>
+
+            <!-- <pre>{{myform.value | json}}</pre> -->
+          </form>
+        </div>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

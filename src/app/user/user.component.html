@@ -1,0 +1,88 @@
+
+<div class="userCollection  col-lg-8 col-md-8 col-sm-12 col-xs-12" *ngIf="!isGuestUser" >
+  <div class="row">
+  <div style="margin: 20px;">
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="heading">
+      User Collection
+    </div>
+    <div>
+
+      <div class="row">
+        <div class="col-lg-12 ">
+          <div class="input-group">
+            <mat-form-field class="example-form-field">
+              <input matInput type="text" placeholder="Search by name" [(ngModel)]="searchBy" />
+              <button mat-button *ngIf="searchBy" matSuffix mat-icon-button aria-label="Clear" (click)="searchBy=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="table-responsive">
+      <div class="example-container mat-elevation-z82">
+        <mat-table #table [dataSource]="filteredusers" matSort   *ngIf="!isLoading && filteredusers.data.length > 0" >
+          <!-- Position Column -->
+
+          <ng-container matColumnDef="id" class="hidden-sm hidden-xs">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-sm hidden-xs">Id</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="hidden-sm hidden-xs"> {{element.id}}</mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header >Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="roleName" class="hidden-sm hidden-xs">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-sm hidden-xs">Role</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="hidden-sm hidden-xs"> {{element.roleName}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action" class="hidden-sm hidden-xs" >
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="hidden-sm hidden-xs">Action</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="hidden-sm hidden-xs">
+            <a (click)="selectedRow(row)" href="javascript:void(0)">  <i class="material-icons arrows">edit</i></a>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row  *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="selectedRow(row)" ></mat-row>
+
+        </mat-table>
+
+        <div   *ngIf="!isLoading && filteredusers.data.length <= 0" [ngClass]="{'no-records' : true}" >
+           No records found.
+          </div>
+      </div>
+
+    </div>
+    <mat-progress-spinner *ngIf="isLoading" class="loading-div" color="accent" mode="indeterminate" value="loading"></mat-progress-spinner>
+  </div>
+</div>
+</div>
+  <div *ngIf="isGuestUser" class="guest-user">
+        <div *ngIf="!isEmailSentSuccessfully">
+            <h2> You don't have permission to view the user details. </h2>
+            <p>  If you wish to view this section,please click on the button below.
+              <br/>Your request will be granted access within 30 mins.</p>
+            <button mat-raised-button [disabled]="isLoading " color="accent" (click)="changeMyRole()" >Request Power user permission </button>
+        </div>
+        <div *ngIf="isEmailSentSuccessfully">
+            <p>A request email has been sent to administrator, you will receive confirmation email within 30mins of your request time. </p>
+          </div>
+
+  </div> 
+

@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="main-div">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <h2>
+          Fade In Animation: Add Item or Remove
+        </h2>
+      </div>
+      <div class="panel-body">
+        <input #itemInput class="form-control" (keyup.enter)="addItem(itemInput)">
+        <div class="col-lg-12" *ngIf="items" class="list-group">
+          <button class="list-group-item" type="botton" *ngFor="let item of items" @fadeIn (click)="removeItem(item)">{{item}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="main-div">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <h2>
+          Slide left Animation: Add Item or Remove
+        </h2>
+      </div>
+      <div class="panel-body">
+        <input #itemInput2 class="form-control" (keyup.enter)="addItem2(itemInput2)">
+        <div class="col-lg-12" *ngIf="items2" class="list-group">
+          <button class="list-group-item" type="botton" *ngFor="let item of items2" @slideLeft (click)="removeItem2(item)">{{item}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
