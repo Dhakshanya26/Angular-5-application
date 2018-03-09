@@ -1,13 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnimationComponent } from './animation.component';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 describe('AnimationComponent', () => {
   let component: AnimationComponent;
   let fixture: ComponentFixture<AnimationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[RouterTestingModule,BrowserAnimationsModule],
       declarations: [ AnimationComponent ]
     })
     .compileComponents();
@@ -19,7 +21,7 @@ describe('AnimationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Check weather animation component created', () => {
     expect(component).toBeTruthy();
   });
 });
