@@ -1,5 +1,5 @@
-import { Component, OnInit,ViewChild, Injectable, HostListener } from '@angular/core'; 
- 
+import { Component, OnInit,ViewChild, Injectable, HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,23 +14,23 @@ export class AppComponent implements  OnInit {
 
 
     //fillerNav = Array(50).fill(0).map((_, i) => `Nav Item ${i + 1}`);
-    
+
   /**
    *
    */
 
   ngOnInit() {
     if (this.hasPermission) {
-      this.getUsers().then(users => this.users = users).catch(e => 
+      this.getUsers().then(users => this.users = users).catch(e =>
         console.log(e.message));
     } else {
       this.users = [];
     }
   }
- 
+
   async getUsers() {
     return [{ name: 'FDS', email: 'sdfsdf@.com' }];
   }
- 
- 
+
+
 }

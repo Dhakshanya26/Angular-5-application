@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserModel, UserRoleModel } from "../model/usermodel";
+import { UserModel, UserRoleModel } from "../ViewModel/usermodel";
 import { Observable } from "rxjs/Observable";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { HttpErrorResponse } from "@angular/common/http/src/response";
