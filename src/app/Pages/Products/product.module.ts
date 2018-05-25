@@ -12,7 +12,7 @@ import { ConvertToSpacePipe } from '../../Pipes/ConvertToSpacePipe';
 import { productDialogComponent } from './ProductDialog/productDialog.component';
 import { ConfimationModalComponent } from '../Shared/dialogs/confimation-dialog.component';
 import { InformationModalComponent } from '../Shared/dialogs/information-dialog.component';
-import { AngMaterialModule } from '../../ang.material.module';
+import { CommonModule } from '../../common.module';
 @NgModule({
   imports: [
     FormsModule,
@@ -25,9 +25,8 @@ import { AngMaterialModule } from '../../ang.material.module';
       { path: 'productdetail/:id', component: ProductDetailComponent, canActivate: [ProductGuardService] },
     ]),
     ShardModule,
-    AngMaterialModule
+    CommonModule
   ],
-  exports:[AngMaterialModule],
   providers: [ProductGuardService],
   declarations: [
     ProductGridComponent,

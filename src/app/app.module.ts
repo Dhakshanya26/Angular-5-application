@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AngMaterialModule } from './ang.material.module';
+import { CommonModule } from './common.module';
 import { MatIconRegistry } from '@angular/material';
 import { ProductModule } from './Pages/Products/product.module';
 
@@ -43,7 +43,7 @@ import { AuthGuard } from './Gaurds/auth-guard';
   ],
   providers: [AuthGuard, UserService, MatIconRegistry],
   imports: [
-    AngMaterialModule,
+    CommonModule,
     AppRoutingModule, ProductModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     RouterModule.forRoot([
@@ -52,7 +52,7 @@ import { AuthGuard } from './Gaurds/auth-guard';
       { path: 'help', component: HelpComponent, canActivate: [AuthGuard] },
     ]),
   ],
-  exports: [BrowserAnimationsModule, AngMaterialModule],
+  exports: [BrowserAnimationsModule, CommonModule],
   bootstrap: [AppComponent],
 })
 

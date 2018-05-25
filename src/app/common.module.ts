@@ -53,4 +53,4 @@ import { NgModule } from '@angular/core';
   ]
 })
 
-export class AngMaterialModule { }
+export class CommonModule { }
